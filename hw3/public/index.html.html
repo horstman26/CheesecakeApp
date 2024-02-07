@@ -1,0 +1,150 @@
+<!-- author: Isabella Horstmanshof -->
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+ <script 
+  src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"/>
+ </script>
+ <link rel="stylesheet" href="/stylesheets/horstman26_cs341_stylesheet.css">
+ <meta charset="UTF-8">
+ <title>HW1 Cheescake Order Form</title>
+</head>
+<body>
+
+<script>
+  var flavor = 0;
+  var numToppings = 0;
+</script>
+
+<h1>Cheesecake Order Form</h1>
+
+<!-- the cheesecake image -->  
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Mondays_at_Il_Forno_-_Cheesecake_with_strawberry_sauce.jpg/1200px-Mondays_at_Il_Forno_-_Cheesecake_with_strawberry_sauce.jpg?20171018065901" alt="Cheesecake" width="150" height="150" >
+<br />
+
+<!-- Used a table with one row and three columns -->
+<p id="qtTitle">Quantity Topping</p>
+
+<table id="qtTable">
+  <tr>
+    <td>
+      <form id="toppingAmountForm"> 
+        <!-- The num quantity selector -->
+  	<select name="numCake" id="numCake" onclick="toppingAmount()">
+    	  <option value="Three">3</option>
+    	  <option value="Two">2</option>
+    	  <option value="One">1</option>
+ 	 </select>
+      </form>
+    </td>
+
+    <!-- a column with spaces for spacing -->
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+
+    <td>
+      <form id="toppingButtonsForm">
+      <!-- the radio buttons for plain, cherry, and chocolate toppings -->
+  	<input type="radio" id="plain" name="topping" onclick="toppingType(plain)" value="Plain">
+  	<label for="plain">Plain</label><br>
+  	<input type="radio" id="cherry" name="topping" onclick="toppingType(cherry)" value="Cherry">
+  	<label for="cherry">Cherry</label><br>
+  	<input type="radio" id="chocolate" name="topping" onclick="toppingType(chocolate)" value="Chocolate">
+  	<label for="chocolate">Chocolate</label><br>
+      </form>
+    </td>
+  </tr>
+</table>
+
+<!-- The notes box, for entering special instructions -->
+<form id="boxOrderForm">
+  <p><label for="notesBox">Notes:</label></p>
+  <textarea id="notesBox" name="notesBox" rows="5" cols="40" placeholder="Enter any special instructions here."></textarea>
+  <br />
+  <button id="orderButton" type="button"
+  onclick="thankYouMessage()">Order</button>
+</form>
+
+<!-- A list with last month's total orders -->
+<!--code for the dropdown list was written with a lot of help from w3Schools at this link
+https://www.w3schools.com/howto/howto_css_dropdown.asp 
+-->
+
+<br />
+<div class="whiteBackground">
+<table>
+  <tr>
+    <td>
+      <h3>Orders for</h3>
+    </td>
+    <td>&nbsp</td>
+    <td>
+      <div class="dropdown">
+        <button class="dropButton" id="monthButton">Jan</button>
+        <div class="dropdownContent">
+          <a onClick="monthSelect('Jan')">Jan</a>
+          <a onClick="monthSelect('Feb')">Feb</a>
+          <a onClick="monthSelect('Mar')">Mar</a>
+          <a onClick="monthSelect('Apr')">Apr</a>
+          <a onClick="monthSelect('May')">May</a>
+          <a onClick="monthSelect('Jun')">Jun</a>
+          <a onClick="monthSelect('Jul')">Jul</a>
+          <a onClick="monthSelect('Aug')">Aug</a>
+          <a onClick="monthSelect('Sep')">Sep</a>
+          <a onClick="monthSelect('Oct')">Oct</a>
+          <a onClick="monthSelect('Nov')">Nov</a>
+          <a onClick="monthSelect('Dec')">Dec</a>
+        </div>
+      </div>
+    </td>
+  </tr>
+</table>
+  <ul>
+    <li>11 cherry</li>
+    <li>17 chocolate</li>
+    <li>31 plain</li>
+  </ul>
+</div>
+
+<script>
+  function monthSelect(monthNum) {
+    document.getElementById("monthButton").innerHTML = monthNum;
+  }
+</script>
+
+<script>
+  function toppingType(flavorIn) {
+    flavor = flavorIn.value;
+  }
+</script>
+
+<script>
+  function toppingAmount() {
+    numToppings = document.getElementById("numCake").value;
+  }
+</script>
+
+<!-- this function is what dispays the thank you message when you press the order button -->
+<script>
+  function thankYouMessage() {
+
+    var boxInput = document.getElementById("notesBox").value;
+
+    if (boxInput.includes('vegan')) {
+      alert("We noticed you included the word vegan, before ordering please note that these cheesecakes contain dairy");
+    }
+    else {
+      if((flavor == 0) || (flavor == 'Plain')){
+        document.getElementById("qtTitle").innerHTML = "You ordered a cheesecake with no toppings";
+      }
+      else{
+        if(numToppings == 0){numToppings = 3;}
+        document.getElementById("qtTitle").innerHTML = `You ordered a cheesecake with ${numToppings} ${flavor} toppings`;
+      }
+      document.getElementById("qtTable").innerHTML = boxInput;
+      document.getElementById("boxOrderForm").innerHTML = "     Thank you! your order has been placed";
+    }
+  }
+</script>
+
+</body>
+</html>
