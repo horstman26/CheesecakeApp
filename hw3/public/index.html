@@ -105,46 +105,7 @@ https://www.w3schools.com/howto/howto_css_dropdown.asp
   </ul>
 </div>
 
-<script>
-  function monthSelect(monthNum) {
-    document.getElementById("monthButton").innerHTML = monthNum;
-  }
-</script>
-
-<script>
-  function toppingType(flavorIn) {
-    flavor = flavorIn.value;
-  }
-</script>
-
-<script>
-  function toppingAmount() {
-    numToppings = document.getElementById("numCake").value;
-  }
-</script>
-
-<!-- this function is what dispays the thank you message when you press the order button -->
-<script>
-  function thankYouMessage() {
-
-    var boxInput = document.getElementById("notesBox").value;
-
-    if (boxInput.includes('vegan')) {
-      alert("We noticed you included the word vegan, before ordering please note that these cheesecakes contain dairy");
-    }
-    else {
-      if((flavor == 0) || (flavor == 'Plain')){
-        document.getElementById("qtTitle").innerHTML = "You ordered a cheesecake with no toppings";
-      }
-      else{
-        if(numToppings == 0){numToppings = 3;}
-        document.getElementById("qtTitle").innerHTML = `You ordered a cheesecake with ${numToppings} ${flavor} toppings`;
-      }
-      document.getElementById("qtTable").innerHTML = boxInput;
-      document.getElementById("boxOrderForm").innerHTML = "     Thank you! your order has been placed";
-    }
-  }
-</script>
+<script src="javascripts/cheesecakejava.js"></script>
 
 </body>
 </html>
