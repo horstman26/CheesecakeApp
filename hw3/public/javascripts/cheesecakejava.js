@@ -8,7 +8,7 @@
     document.getElementById("monthButton").innerHTML = monthNum;
     
     //send and handle a post request (for cakeData, in orders.js)
-    $.post('/orders', function(response) {
+    $.post('/orders', { MONTH: monthNum } , function(response) {
 
       console.log(response);
 
@@ -86,6 +86,12 @@
       }
       document.getElementById("qtTable").innerHTML = boxInput;
       document.getElementById("boxOrderForm").innerHTML = "     Thank you! your order has been placed";
+
+      //place the order
+
+      //send a post request
+      $.post('/neworder', { quantity: numToppings, topping: flavor, notes: boxInput });
+
     }
   }
 
